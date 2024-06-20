@@ -1,0 +1,6 @@
+@igovit_HostAddress = http://localhost:5102
+
+GET {{igovit_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

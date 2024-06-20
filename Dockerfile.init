@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /app
+
+COPY *.csproj ./
+RUN dotnet restore -v detailed
+
+WORKDIR /app
+COPY . ./
+
+RUN dotnet tool install --global dotnet-ef --version 8.*
+
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+ENTRYPOINT ["dotnet", "ef", "database", "update", "--context", "EmployeeContext"]

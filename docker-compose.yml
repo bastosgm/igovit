@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  app_prod:
+    container_name: app_prod
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      APSNETCORE_URLS: "https://+:8080"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "${CERT_PASSWORD}"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/aspnetapp.pfx"
+      ConnectionStrings__UserConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+      ConnectionStrings__EmployeeConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+      ConnectionStrings__unitConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+    volumes:
+      - ./certs:/root/.aspnet/https
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    restart: unless-stopped
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  init-db:
+    container_name: init-db
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile.init
+    environment:
+      ConnectionStrings__UserConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+      ConnectionStrings__EmployeeConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+      ConnectionStrings__unitConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
+    depends_on:
+      - db
+
+volumes:
+  pgdata: {}

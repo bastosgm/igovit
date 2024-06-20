@@ -1,0 +1,20 @@
+<h1 id="tableLabel">Users</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!users?.length"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="users.length">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.login }}</td>
+      <td>{{ user.status }}</td>
+    </tr>
+  </tbody>
+</table>
