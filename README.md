@@ -6,8 +6,8 @@ This is a system for registering, updating and viewing of information about avai
 
 ## History
 
-- 1.0.0
-  - Initial Project
+- 0.0.1
+  - Initial Base
 
 ## Instalation
 
@@ -23,4 +23,4 @@ Gustavo Bastos - [Linkedin](https://linkedin.com/in/bastosgm) - bastosgm@outlook
 
 Distributed under license GPLv3. See `License` for more information.
 
-[https://github.com/bastosgm/bastosgm-20240129](https://github.com/bastosgm/bastosgm-20240129)
+[https://github.com/bastosgm/igovit](https://github.com/bastosgm/igovit)
