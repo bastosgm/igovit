@@ -1,0 +1,4 @@
+[ ] #1 - Resolve urls thinking in the app inside the container which uses 8080
+[ ] #2 - Needs to make a request to get users and compare with existents, but asp.net doesn rely on the certs
+[ ] #3 - Needs to fix the redirect to /login when there's no token in cookies
+[ ] #4 - Delete logs that stands in frontend
