@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var httpsPort = Environment.GetEnvironmentVariable("ASPNETCORE_HTTPS_PORT") ?? "8080";
+var prodUrl = $"https://+:{httpsPort}";
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -56,7 +57,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("https://localhost:44404")
+            builder.WithOrigins("https://localhost:44404", $"https://localhost:{httpsPort}")
                    .AllowAnyHeader()
                    .AllowAnyMethod()
                    .AllowCredentials();
