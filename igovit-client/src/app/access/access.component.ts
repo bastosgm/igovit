@@ -4,13 +4,13 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-access',
+  templateUrl: './access.component.html',
+  styleUrls: ['./access.component.css'],
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup | any;
-  status: string = '';
+export class AccessComponent implements OnInit {
+  accessForm: FormGroup | any;
+  message: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -19,21 +19,20 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
+    this.accessForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
-    console.log(this.loginForm);
-    if (!this.loginForm.valid) return;
+    console.log(this.accessForm);
+    if (!this.accessForm.valid) return;
 
-    this.authService.login(this.loginForm.value).subscribe(
+    this.authService.login(this.accessForm.value).subscribe(
       (response: any) => {
-        this.status = response.reasonPhrase;
-
-        if (this.status != 'OK') {
+        if (response.reasonPhrase !== 'OK') {
+          this.message = 'Login or password incorrect';
           console.log('Erro no login', response);
           return;
         }

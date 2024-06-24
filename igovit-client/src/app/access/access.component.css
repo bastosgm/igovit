@@ -1,0 +1,28 @@
+.access-container {
+  justify-content: space-between;
+}
+
+div {
+  padding: 5px 0;
+}
+
+.lead {
+  width: 200px;
+}
+
+.divisor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    width: 1px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+}
