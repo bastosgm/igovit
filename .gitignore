@@ -20,8 +20,8 @@ packages/
 *.mdf
 *.ldf
 
-.env
-.vsenv
+*.env
+*.vsenv
 
 certs/
 

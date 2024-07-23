@@ -12,7 +12,7 @@ services:
     environment:
       APSNETCORE_URLS: "https://+:8080"
       ASPNETCORE_Kestrel__Certificates__Default__Password: "${CERT_PASSWORD}"
-      ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/aspnetapp.pfx"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/private.pfx"
       ConnectionStrings__UserConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
       ConnectionStrings__EmployeeConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
       ConnectionStrings__unitConnection: "Host=db;Database=postgres;Username=postgres;Password=postgres"
