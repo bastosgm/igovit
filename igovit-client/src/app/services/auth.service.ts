@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -7,9 +7,10 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7273';
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string
+  ) {}
 
   login(credentials: { username: string; password: string }) {
     const httpOptions = {
@@ -18,7 +19,7 @@ export class AuthService {
     };
 
     return this.http
-      .post<Response>(`${this.apiUrl}/api/login`, credentials, httpOptions)
+      .post<Response>(`${this.baseUrl}api/Login`, credentials, httpOptions)
       .pipe(
         tap((response) => {
           // Adicione lógica de pós-login aqui, se necessário
@@ -34,7 +35,7 @@ export class AuthService {
     };
 
     return this.http
-      .post<Response>(`${this.apiUrl}/api/logout`, {}, httpOptions)
+      .post<Response>(`${this.baseUrl}api/Logout`, {}, httpOptions)
       .pipe(
         tap((response) => {
           // Adicione lógica de pós-logout aqui, se necessário
@@ -50,7 +51,7 @@ export class AuthService {
     };
 
     return this.http.get<boolean>(
-      `${this.apiUrl}/api/is-authenticated`,
+      `${this.baseUrl}api/IsAuthenticated`,
       httpOptions
     );
   }

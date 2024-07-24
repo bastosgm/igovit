@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./access.component.css'],
 })
 export class AccessComponent implements OnInit {
-  accessForm: FormGroup | any;
+  accessForm: FormGroup = new FormGroup({});
   message: string = '';
 
   constructor(
@@ -29,20 +29,20 @@ export class AccessComponent implements OnInit {
     console.log(this.accessForm);
     if (!this.accessForm.valid) return;
 
-    this.authService.login(this.accessForm.value).subscribe(
-      (response: any) => {
+    this.authService.login(this.accessForm.value).subscribe({
+      next: (response: any) => {
         if (response.reasonPhrase !== 'OK') {
           this.message = 'Login or password incorrect';
           console.log('Erro no login', response);
           return;
         }
 
-        this.router.navigate(['']);
+        this.router.navigate(['/fetch-data']);
         console.log('Login bem-sucedido', response);
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro no login', error);
-      }
-    );
+      },
+    });
   }
 }
