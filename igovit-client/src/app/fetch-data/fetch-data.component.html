@@ -2,11 +2,14 @@
 
 <p>Here you can see a complete list of users</p>
 
-<p *ngIf="!users?.length"><em>Loading...</em></p>
+@if (!users?.length) {
+<p><em>Loading...</em></p>
+}
 
-<p *ngIf="!isAuthenticated" class="mt-3 alert alert-danger"><em>You need to be <a href="/access">logged</a>.</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="isAuthenticated">
+@if (!isAuthenticated) {
+<p class="mt-3 alert alert-danger"><em>You need to be <a href="/access">logged</a>.</em></p>
+} @else {
+<table class='table table-striped' aria-labelledby="tableLabel">
   <thead>
     <tr>
       <th>User</th>
@@ -20,3 +23,4 @@
     </tr>
   </tbody>
 </table>
+}
