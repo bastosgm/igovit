@@ -17,10 +17,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users">
+    @for (user of users; track user.login) {
+    <tr>
       <td>{{ user.login }}</td>
       <td>{{ user.status }}</td>
     </tr>
+    }
   </tbody>
 </table>
 }
